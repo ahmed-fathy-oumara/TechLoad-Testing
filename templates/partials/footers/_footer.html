@@ -1,0 +1,136 @@
+{% load static %}
+{% load i18n %}
+
+
+<!-- Footer-->
+<footer class="footer bg-faded-light">
+  <div class="border-bottom border-light py-4">
+    <div class="container d-sm-flex align-items-center justify-content-between"><a class="d-inline-block" href="real-estate-home.html"><img src="{% static 'img/logo/techload-logo.png' %}" width="150" alt="logo"></a>
+      <div class="d-flex pt-3 pt-sm-0">
+
+        <div class="dropdown d-none d-lg-block" data-bs-toggle="select">
+          <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            {% get_current_language as LANGUAGE_CODE %}
+            <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+            {% if LANGUAGE_CODE == 'ar' %}
+              <button class="btn btn-link btn-light btn-sm" type="submit" name="language" value="en"><i class="fi-globe me-2"></i><span class="label">English</span></button>
+            {% else %}
+              <button class="btn btn-link btn-light btn-sm" type="submit" name="language" value="ar"><i class="fi-globe me-2"></i><span class="label">العربية</span></button>
+            {% endif %}
+          </form>
+        </div>
+        
+        <div class="dropdown">
+          <button class="btn btn-light btn-link btn-sm dropdown-toggle fw-normal py-2" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i>Egypt</button>
+          <div class="dropdown-menu dropdown-menu-dark dropdown-menu-sm-end" style="min-width: 7.5rem;">
+            <a class="dropdown-item" href="#">Saudi Arabia</a>
+            <a class="dropdown-item" href="#">Qatar</a>
+            <a class="dropdown-item" href="#">Kuwait</a>
+            <a class="dropdown-item" href="#">Jordan</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="container pt-4 pb-3 pt-lg-5 pb-lg-4">
+    <div class="row pt-2 pt-lg-0">
+      <div class="col-lg-3 pb-2 mb-4">
+        <h3 class="h5 text-light mb-2">{% trans "Subscribe to our newsletter" %}</h3>
+        <p class="fs-sm text-light opacity-70">{% trans "Don’t miss any relevant offers!" %}</p>
+        <form class="form-group form-group-light w-100">
+          <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+            <input class="form-control" type="text" placeholder="Your email">
+          </div>
+          <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+        </form>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 offset-xl-1 mb-2 mb-sm-4">
+        <h3 class="fs-base text-light">{% trans "Explore" %}</h3>
+        <ul class="list-unstyled fs-sm">
+          <li><a class="nav-link-light" href="#">{% trans "Mobile apps" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Web apps" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Extensions" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Libraries" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Plugins" %}</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 mb-2 mb-sm-4">
+        <h3 class="fs-base text-light">{% trans "About" %}</h3>
+        <ul class="list-unstyled fs-sm">
+          <li><a class="nav-link-light" href="#">{% trans "About us" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Contact us" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Our Blog" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "FAQs" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Support" %}</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 mb-2 mb-sm-4">
+        <h3 class="fs-base text-light">{% trans "Advertising" %}</h3>
+        <ul class="list-unstyled fs-sm">
+          <li><a class="nav-link-light" href="#">{% trans "Blog" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Vlog" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Website" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Mobile app" %}</a></li>
+          <li><a class="nav-link-light" href="#">{% trans "Social media" %}</a></li>
+        </ul>
+      </div>
+      <div class="col-xl-2 col-lg-3 col-sm-6 col-md-3 mb-2 mb-sm-4">
+        <h3 class="fs-base text-light">{% trans "Contacts" %}</h3>
+        <a class="d-flex align-items-center text-decoration-none mb-2" href="tel:01111129280">
+          <i class="fi-device-mobile me-2"></i>
+          <span class="text-light">(+2)01111129280</span>
+        </a>
+        <a class="d-flex align-items-center text-decoration-none mb-2" href="mailto:cs@techload.net">
+          <i class="fi-mail me-2"></i>
+          <span class="text-light">cs@techload.net</span>
+        </a>
+        <div class="d-flex flex-wrap pt-4">
+          <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#">
+            <i class="fi-facebook"></i>
+          </a>
+          <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#">
+            <i class="fi-twitter"></i>
+          </a>
+          <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#">
+            <i class="fi-telegram"></i>
+          </a>
+          <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2" href="#">
+            <i class="fi-messenger"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container d-lg-flex align-items-center justify-content-between fs-sm pb-3">
+    <div class="d-flex flex-wrap justify-content-center order-lg-2 mb-3"><a class="nav-link nav-link-light fw-normal" href="#">Terms of use</a><a class="nav-link nav-link-light fw-normal" href="#">Privacy policy</a><a class="nav-link nav-link-light fw-normal" href="#">Accessibility statement</a><a class="nav-link nav-link-light fw-normal pe-0" href="#">Interest based ads</a></div>
+    <p class="text-center text-lg-start order-lg-1 mb-lg-0"><span class="text-light opacity-50">&copy; {% trans "All rights reserved to" %} </span><a class="nav-link-light fw-bold" href="https://techload.net/" target="_blank" rel="noopener">TechLoad</a></p>
+  </div>
+</footer>
+
+<!-- Filters sidebar toggle button (mobile)-->
+<button
+  {% if 'buyProperty' in request.path %}
+      class="btn btn-primary btn-sm w-100 rounded-0 fixed-bottom d-lg-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#filters-sidebar"
+
+  {% elif 'rentProperty' in request.path %}
+      class="btn btn-primary btn-sm w-100 rounded-0 fixed-bottom d-lg-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#filters-sidebar"
+
+  {% else %}
+      class="d-none"
+  {% endif %} 
+>
+  <i class="fi-filter me-2"></i>Filters
+</button>
+
+<!-- Back to top button-->
+<a class="btn-scroll-top" href="#top" data-scroll>
+  <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+  <i class="btn-scroll-top-icon fi-chevron-up"> </i>
+</a>

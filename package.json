@@ -1,0 +1,65 @@
+{
+  "name": "techload",
+  "version": "1.0.0",
+  "description": "Tech-solutions directory",
+  "main": "home.html",
+  "scripts": {
+    "test": "t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmed-fathy-oumara/TechLoad.git"
+  },
+  "keywords": [
+    "Softwares",
+    "Tech-Solutions",
+    "Software",
+    "Technologies",
+    "Mobile",
+    "Apps",
+    "Websites",
+    "Browser",
+    "Extensions"
+  ],
+  "author": "Ahmed Fathy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmed-fathy-oumara/TechLoad/issues"
+  },
+  "homepage": "https://github.com/ahmed-fathy-oumara/TechLoad#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.0.0",
+    "@lottiefiles/lottie-player": "^1.5.4",
+    "bootstrap": "^5.1.3",
+    "card": "^2.5.4",
+    "chartist": "^0.11.4",
+    "cleave.js": "^1.6.0",
+    "drift-zoom": "^1.5.0",
+    "filepond": "^4.30.3",
+    "filepond-plugin-file-validate-size": "^2.2.5",
+    "filepond-plugin-file-validate-type": "^1.2.6",
+    "filepond-plugin-image-crop": "^2.0.6",
+    "filepond-plugin-image-preview": "^4.6.10",
+    "filepond-plugin-image-resize": "^2.0.10",
+    "filepond-plugin-image-transform": "^3.8.7",
+    "flatpickr": "^4.6.9",
+    "imagesloaded": "^5.0.0",
+    "jarallax": "^1.12.8",
+    "jquery": "^3.6.0",
+    "leaflet": "^1.7.1",
+    "lg-fullscreen.js": "^1.2.0",
+    "lg-thumbnail.js": "^1.2.0",
+    "lg-video.js": "^1.3.0",
+    "lg-zoom.js": "^1.3.0",
+    "lightgallery.js": "^1.4.0",
+    "nouislider": "^15.5.0",
+    "owl.carousel": "^2.3.4",
+    "parallax-js": "^3.1.0",
+    "prismjs": "^1.25.0",
+    "shufflejs": "^6.0.0",
+    "simplebar": "^5.3.6",
+    "slick-carousel": "^1.8.1",
+    "smooth-scroll": "^16.1.3",
+    "tiny-slider": "^2.9.4"
+  }
+}
