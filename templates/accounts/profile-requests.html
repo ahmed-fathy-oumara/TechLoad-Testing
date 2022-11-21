@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<!-- Add Tech modal-->
+{% comment %} {% include 'partials/modals/_add-tech-modal.html' %} {% endcomment %}
+
+<!-- Page content-->
+<div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
+  <!-- Breadcrumb-->
+  <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb-light">
+      <li class="breadcrumb-item"><a href="car-finder-home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="car-finder-account-info.html">Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Requests</li>
+    </ol>
+  </nav>
+  <!-- Page content-->
+  <div class="row">
+    <!-- Side Navbar-->
+    {% include 'partials/side-navbars/_profile-side-navbar.html' %}
+    <!-- Content-->
+    <div class="col-lg-8 col-md-7 mb-5">
+      <h1 class="h2 text-light">My Requests</h1>
+      <p class="text-light pt-1 border-bottom border-light pb-3 mb-4">Here you can see all your demo requests and manage them easily.</p>
+
+      <!-- Messages Alerts -->
+      {% include 'partials/messages/alerts.html' %}
+
+      <!-- Demo Requests Table-->
+      <div class="card card-flush bg-transparent border-light px-3" style=>
+        <div class="table-responsive">
+          <table class="table table-dark table-borderless mb-0">
+            <thead class="border-bottom border-light">
+              <tr>
+                {% comment %} <th>#</th> {% endcomment %}
+                <th class="text-muted text-nowrap">Tech name</th>
+                <th class="text-muted text-nowrap">Tech type</th>
+                <th class="text-muted text-nowrap">Tech link</th>
+                <th class="text-muted text-nowrap">Contact name</th>
+                <th class="text-muted text-nowrap">Contact phone</th>
+                <th class="text-muted text-nowrap">Contact email</th>
+                <th class="text-muted text-nowrap">Contact title</th>
+                <th class="text-muted text-nowrap">Demo display</th>
+                <th class="text-muted text-nowrap">Demo date and time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in user_demo_requests %}
+              <tr class="border-bottom border-light">
+                {% comment %} <th scope="row">{{ i.id }}</th> {% endcomment %}
+                <th class="fs-sm text-light">{{ i.tech_name }}</th>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.tech_type }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.tech_link }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.contact_name }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.contact_phone }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.contact_email }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.contact_job_title }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.demo_display_method }}</td>
+                <td class="fs-sm opacity-80 text-nowrap">{{ i.demo_date_time }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

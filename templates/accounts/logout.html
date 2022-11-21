@@ -1,0 +1,139 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% load i18n %}
+
+{% block content %}
+
+<!-- Page content-->
+
+<!-- Navbar-->
+{% include 'partials/navbars/_home-navbar.html' %} 
+
+<!-- Registeration form -->
+<div class="container py-4 py-lg-5 my-4">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-11 col-sm-10">
+            <div class="row mt-5 mb-5 align-items-center">
+                <!-- Registeration form Left side -->
+                <div class="col-md-5 border-end-md border-light p-4 p-sm-5">
+                <h1 class="h2 text-light mb-4 mb-sm-5">
+                    Join TechLoad<br />and stay updated with all Tech Solutions!
+                </h1>
+                <ul class="list-unstyled mb-4 mb-sm-5">
+                    <li class="d-flex mb-2">
+                        <i class="fi-check-circle text-primary mt-1 me-2"></i>
+                        <span class="text-light opacity-80">Add and promote listings for Free</span>
+                    </li>
+                    <li class="d-flex mb-2">
+                        <i class="fi-check-circle text-primary mt-1 me-2"></i>
+                        <span class="text-light opacity-80">Easily manage your account</span>
+                    </li>
+                </ul>
+                <img
+                    class="d-block mx-auto"
+                    src="{% static 'img/signin-modal/signup.svg' %}"
+                    width="300"
+                    alt="Illustartion"
+                />
+                <div class="text-light opacity-80 mt-sm-4 pt-md-3">
+                    Already have an account?
+                    <a href="{% url 'accounts/login' %}">Sign in</a>
+                </div>
+                </div>
+
+                <!-- Registeration form right side -->
+                <div class="col-md-7 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
+                    <a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a>
+                    <a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
+                <div class="d-flex align-items-center py-3 mb-3">
+                    <hr class="text-secondary opacity-10 w-100" />
+                    <div class="text-light opacity-80 px-3">Or</div>
+                    <hr class="text-secondary opacity-10 w-100" />
+                </div>
+
+                <form action="{% url 'sign_up' %}" method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row g-2 mb-4">
+                    <div class="col-md ">
+                        <label class="form-label text-light" for="signup-name">{% trans "First name" %}</label>
+                        {{form.first_name}}
+                        <div class="invalid-feedback">Please enter your first name!</div>
+                    </div>
+                    <div class="col-md">
+                        <label class="form-label text-light" for="reg-ln">{% trans "Last name" %}</label>
+                        {{form.last_name}}
+                        <div class="invalid-feedback">Please enter your last name!</div>
+                    </div>
+                    </div>
+
+                    <div class="row g-2 mb-4">
+                    <div class="col-md">
+                        <label class="form-label text-light" for="signup-name">{% trans "Gender" %}<span class="text-danger">*</span></label>
+                        <select class="form-select form-select-light">
+                          <option value="">Your gender</option>
+                          <option value="">{{form.gender}}</option>
+                        </select>
+                        <div class="invalid-feedback">Please enter your gender!</div>
+                    </div>
+                    <div class="col-md">
+                        <label class="form-label text-light" for="signup-name">{% trans "Phone number" %}</label>
+                        {{form.phone_number}}
+                        <div class="invalid-feedback">Please enter your phone number!</div>
+                    </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-light" for="signup-email">{% trans "Email address" %}</label>
+                        {{form.email}}
+                        <div class="invalid-feedback">Please enter your email!</div>
+                    </div>
+
+                    <div class="row g-2 mb-4">
+                        <div class="col-md">
+                            <label class="form-label text-light" for="signup-password">{% trans "Password" %}<span class="fs-sm text-muted ms-2">min. 8 char</span></label>
+                            <div class="password-toggle">
+                                {{form.password}}
+                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                    <input class="password-toggle-check" type="checkbox" />
+                                    <span class="password-toggle-indicator"></span>
+                                </label>
+                                <div class="invalid-feedback">Please enter your password!</div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <label class="form-label text-light" for="signup-password-confirm">{% trans "Confirm password" %}</label>
+                            <div class="password-toggle">
+                                {{form.confirm_password}}
+                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                    <input class="password-toggle-check" type="checkbox" />
+                                    <span class="password-toggle-indicator"></span>
+                                </label>
+                                <div class="invalid-feedback">Please confirm your password!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-4">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="agree-to-terms"
+                        required
+                    />
+                    <label class="form-check-label" for="agree-to-terms"
+                        >By joining, I agree to your <a href="#">Terms</a> and
+                        <a href="#">Privacy policy</a></label
+                    >
+                    </div>
+                    <button class="btn btn-primary btn-lg w-100" type="submit">
+                    Sign up
+                    </button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

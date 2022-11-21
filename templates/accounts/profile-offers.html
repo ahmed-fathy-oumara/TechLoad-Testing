@@ -1,0 +1,126 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+
+<!-- Page content-->
+<div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
+  <!-- Breadcrumb-->
+  <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb-light">
+      <li class="breadcrumb-item"><a href="car-finder-home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="car-finder-account-info.html">Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Offers</li>
+    </ol>
+  </nav>
+  <!-- Page content-->
+  <div class="row">
+    <!-- Side Navbar-->
+    {% include 'partials/side-navbars/_profile-side-navbar.html' %}
+    <!-- Content-->
+    <div class="col-lg-8 col-md-7 mb-5">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1 class="h2 text-light mb-0">My Offers</h1><a class="nav-link-light fw-bold" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete all</a>
+      </div>
+      <p class="text-light pt-1 mb-4">Here you can see all the offers you revealed their promocode and edit them easily.</p>
+      <!-- Nav tabs-->
+      <ul class="nav nav-tabs nav-tabs-light border-bottom border-light mb-4" role="tablist">
+        <li class="nav-item mb-3"><a class="nav-link active" href="#" role="tab" aria-selected="true"><i class="fi-alarm fs-base me-2"></i>Ending soon offers</a></li>
+        <li class="nav-item mb-3"><a class="nav-link" href="#" role="tab" aria-selected="false"><i class="fi-clock fs-base me-2"></i>Ongoing offers</a></li>
+        <li class="nav-item mb-3"><a class="nav-link" href="#" role="tab" aria-selected="false"><i class="fi-x-circle fs-base me-2"></i>Ended offers</a></li>
+      </ul>
+      <!-- Items -->
+      <div class="row">
+        <!-- Item 1 -->
+        {% for software in softwares %}
+        <div class="col-sm-6 mb-4">
+          <!-- Card Header -->
+          <div class="card card-light card-hover h-100">
+            <div class="card-img-top card-img-hover">
+              <a href="{% url 'softwares/details-pages/software-details' software.id %}" class="img-overlay"></a>
+              <div class="position-absolute start-0 top-0 pt-3 ps-3">
+                <span class="d-table badge bg-info mb-1">New</span>
+                <span class="d-table badge bg-primary">Featured</span>
+              </div>
+              <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
+                  <button class="btn btn-icon btn-translucent-light btn-xs rounded-circle" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-dark my-1" aria-labelledby="contextMenu1">
+                    <li>
+                      <button class="dropdown-item" type="button"><i class="fi-edit me-2"></i>Edit</button>
+                    </li>
+                    <li>
+                      <button class="dropdown-item" type="button"><i class="fi-flame me-2"></i>Promote</button>
+                    </li>
+                    <li>
+                      <button class="dropdown-item" type="button"><i class="fi-power me-2"></i>Deactivate</button>
+                    </li>
+                    <li>
+                      <button class="dropdown-item" type="button"><i class="fi-trash me-2"></i>Delete</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <img src="{{ software.main_image.url }}" alt="Image">
+            </div>
+            <!-- Card Body -->
+            <div class="card-body position-relative pb-0">
+              <div class="d-flex align-items-center justify-content-between pb-1">
+                <!-- Tech Type -->
+                <span class="fs-sm text-uppercase text-primary me-3">{{ software.type }}</span>
+                <!-- Tech OS -->
+                <div class="d-flex fs-sm text-light opacity-90">
+                  {% if software.has_app_store_app %}
+                  <span class="badge bg-dark me-1"><i class="fa-brands fa-apple me-1"></i>IOS</span>
+                  {% endif %}
+                  {% if software.has_google_play_app %}
+                  <span class="badge bg-dark"><i class="fi-google-play me-1"></i>Android</span>
+                  {% endif %}
+                </div>
+              </div>
+              <!-- Tech Title -->
+              <h3 class="h4 mb-2">
+                <a class="nav-link-light stretched-link" href="{% url 'softwares/details-pages/software-details' software.id %}">{{ software.title }}</a>
+              </h3>
+              <!-- Pricing -->
+              <div class="h6 text-light opacity-70 fw-bold mb-2">{{ software.download_price }}</div>
+              <!-- Listing Description-->
+              <div class="text-light fs-sm opacity-70 mb-1"> {{ software.description_intro|safe }}
+                <a class="text-decoration-none" href="{% url 'softwares/details-pages/software-details' software.id %}">
+                  <span class"text-primary"><strong class="nav-link-light">read more</strong></span>
+                </a> 
+              </div>
+            </div>
+            <!-- Card Footer -->
+            <div class="card-footer border-0">
+              <!-- Listing meta-->
+              <div class="d-flex flex-wrap justify-content-between border-top border-light fs-xs text-light mb-1 pt-3">
+                <div class="me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rating">
+                  <i class="fi-star-half fs-lg opacity-70 me-2"></i>
+                  <span class="opacity-70"><strong>4.5</strong></span>
+                </div>
+                <div class="me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Views">
+                  <i class="fi-eye-on fs-lg opacity-70 me-2"></i>
+                  <span class="opacity-70"><strong>2875</strong></span>
+                </div>
+                <div class="me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Downloads">
+                  <i class="fi-cloud-download fs-lg opacity-70 me-2"></i>
+                  <span class="opacity-70"><strong>329</strong></span>
+                </div>
+                <div class="me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ref. number">
+                  <i class="fi-geo fs-lg opacity-70 me-2"></i>
+                  <span class="opacity-70"><strong>681013232</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

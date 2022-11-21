@@ -1,0 +1,31 @@
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show"{% endif %} role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}<span class="fw-bold">Error: </span>{% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}<i class="fa-solid fa-circle-check fw-bold fs-lg me-2"></i></span>{% endif %}
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+<!-- Success alert -->
+{% comment %} <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <span class="fw-bold">Success alert:</span> Dismiss me by clicking the close button on the right.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> {% endcomment %}
+
+
+<!-- Success alert with icon -->
+{% comment %} <div class="alert alert-success d-flex" role="alert">
+  <i class="fi-check-circle me-2 me-sm-3 lead"></i>
+  <div>A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</div>
+</div> {% endcomment %}
+
+<!-- Success alert -->
+{% comment %} <div class="alert alert-success" role="alert">
+  A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div> {% endcomment %}

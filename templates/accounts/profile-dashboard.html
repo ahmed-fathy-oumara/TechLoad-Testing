@@ -1,0 +1,215 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+
+<!-- Page content-->
+<div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
+  <!-- Breadcrumbs -->
+  <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb-light">
+      <li class="breadcrumb-item"><a href="car-finder-home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="car-finder-account-info.html">Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Dashboard</li>
+    </ol>
+  </nav>
+  <!-- Page content-->
+  <div class="row">
+    <!-- Side Navbar-->
+    {% include 'partials/side-navbars/_profile-side-navbar.html' %}
+
+    <!-- Content-->
+    <div class="col-lg-8 col-md-7 mb-5">
+
+      <!-- Messages Alerts -->
+      {% include 'partials/messages/alerts.html' %}
+
+      <h1 class="h2 text-light mb-3">My Dashboard</h1>
+      <p class="text-light pt-1 border-bottom border-light pb-3 mb-4">Here you can view and manage all your updates, activities and subscriptions.</p>
+      <div class="row mb-5">
+
+        <!-- Notifications -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-bell"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">4</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Notifications</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Notifications</h5>
+            <p class="card-text fs-sm text-light opacity-70">Click here to view all your new notifications and keep updated with the latest solutions and offers.</p>
+          </a>
+        </div>
+        <!-- Favorites -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-heart"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">4</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Favorites</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Favorites</h5>
+            <p class="card-text fs-sm text-light opacity-70">Click here to view all your favorite solutions and edit them easily.</p>
+          </a>
+        </div>
+        <!-- Offers -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-gift"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">4</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Offers</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Offers</h5>
+            <p class="card-text fs-sm text-light opacity-70">Click here to view all the offers you revealed their promocode and edit them easily.</p>
+          </a>
+        </div>
+        <!-- Extended Offers -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-switch-horizontal"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">4</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Extended</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Extended offers</h5>
+            <p class="card-text fs-sm text-light opacity-70">Click here to view all the offers you extended and edit them easily.</p>
+          </a>
+        </div>
+        <!-- Downloads -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-cloud-download"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">4</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Downloads</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Downloads</h5>
+            <p class="card-text fs-sm text-light opacity-70">Click here to view all the solutions you downloaded and edit them easily.</p>
+          </a>
+        </div>
+        <!-- Reviews -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-star"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">4</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Reviews</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Reviews</h5>
+            <p class="card-text fs-sm text-light opacity-70">Click here to view all your reviews and ratings and edit them easily.</p>
+          </a>
+        </div>
+        <!-- Subscription -->
+        <div class="col-12 mb-4">
+          <a href="#" class="icon-box card card-body card-light card-hover text-start">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="icon-box-media bg-faded-light text-light">
+                <i class="fi-security"></i>
+              </div>
+              <div>
+                <h5 class="h3 text-light text-center mb-0">1</h5>
+                <div class="fs-xs text-light text-center opacity-70 mb-0">Subscriptions</div>
+              </div>
+            </div>
+            <h5 class="icon-box-title text-light mb-2">My Subscriptions</h5>
+            <p class="card-text border-bottom border-light pb-3 fs-sm text-light opacity-70">Click here to view all your subscription details.</p>
+            <div class="row g-2">
+              <div class="col me-sm-1">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Plan"><i class="fi-clock d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">Annual</span></div>
+              </div>
+              <div class="col me-sm-1">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="End-date"><i class="fi-alarm d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">Oct.25.2023</span></div>
+              </div>
+              <div class="col me-sm-1">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Price"><i class="fi-credit-card d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">1000EGP</span></div>
+              </div>
+              <div class="col">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Number of users"><i class="fi-users d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">1</span></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- Item-->
+      {% comment %} <div class="card card-light card-hover card-horizontal mb-4">
+        <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="car-finder-single.html"></a>
+          <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">Used</span></div>
+          <div class="content-overlay end-0 top-0 pt-3 pe-3">
+            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+          </div>
+          <div class="tns-carousel-inner position-absolute top-0 h-100">
+            <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(img/car-finder/catalog/14.jpg);"></div>
+            <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(img/car-finder/catalog/14.jpg);"></div>
+          </div>
+        </div>
+        <div class="card-body position-relative">
+          <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
+            <button class="btn btn-icon btn-translucent-light btn-xs rounded-circle" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
+            <ul class="dropdown-menu dropdown-menu-dark my-1" aria-labelledby="contextMenu1">
+              <li>
+                <button class="dropdown-item" type="button"><i class="fi-edit me-2"></i>Edit</button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button"><i class="fi-flame me-2"></i>Promote</button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button"><i class="fi-power me-2"></i>Deactivate</button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button"><i class="fi-trash me-2"></i>Delete</button>
+              </li>
+            </ul>
+          </div>
+          <div class="fs-sm text-light pb-1">2017</div>
+          <h3 class="h6 mb-1"><a class="nav-link-light" href="car-finder-single.html">Toyota GT86</a></h3>
+          <div class="text-primary fw-bold mb-1">$16,000</div>
+          <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>Chicago</div>
+          <div class="border-top border-light mt-3 pt-3">
+            <div class="row g-2">
+              <div class="col me-sm-1">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-dashboard d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">32K mi</span></div>
+              </div>
+              <div class="col me-sm-1">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-gearbox d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">Manual</span></div>
+              </div>
+              <div class="col">
+                <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-petrol d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">Gasoline</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> {% endcomment %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

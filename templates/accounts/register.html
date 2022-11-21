@@ -1,0 +1,149 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<!-- Page content-->
+
+<!-- Registration Form-->
+<div class="container py-4 py-lg-5 my-4">
+  <div class="d-flex justify-content-center">
+    <div class="col-md-11 col-sm-10">
+      <div class="row mt-5 mb-5 align-items-center">
+        <!-- Registeration form Left side -->
+        <div class="col-md-5 border-end-md border-light p-4 p-sm-5">
+          <h1 class="mb-4 mb-sm-5">
+            <span class="text-light">Join Us &amp;</span><br /><span class="text-primary">Stay Techie!</span>
+          </h1>
+          <ul class="list-unstyled mb-4 mb-sm-5">
+            <li class="d-flex mb-2">
+              <i class="fi-check-circle text-primary mt-1 me-2"></i>
+              <span class="text-light opacity-80">Stay tuned to all our Tech Solutions offers </span>
+            </li>
+            <li class="d-flex mb-2">
+              <i class="fi-check-circle text-primary mt-1 me-2"></i>
+              <span class="text-light opacity-80">Easily decide your next Tech Solution to use</span>
+            </li>
+          </ul>
+          <img class="d-block mx-auto" src="{% static 'img/signin-modal/signup.svg' %}" width="300" alt="Illustartion" />
+          <div class="text-light opacity-80 mt-sm-4 pt-md-3">Already have an account?
+            <a href="{% url 'sign_in' %}">Sign in</a>
+          </div>
+        </div>
+
+        <!-- Registeration form right side -->
+        <div class="col-md-7 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
+          <!-- Signup with Google -->
+          <a class="btn btn-outline-danger w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a>
+          <!-- Signup with Facebook -->
+          <a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
+          <div class="d-flex align-items-center py-3 mb-3">
+            <hr class="text-secondary opacity-10 w-100" />
+            <div class="text-light opacity-80 px-3">Or</div>
+            <hr class="text-secondary opacity-10 w-100" />
+          </div>
+
+
+          <!-- Header and footer -->
+          {% comment %} {% if request.GET.command == 'verification' %}
+            <div class="card card-light text-center">
+              <div class="card-body">
+                <h4 class="card-title">Welcome on board!</h4>
+                <p class="card-text mb-2">Thanks for your registration to TechLoad with your email: 
+                <div class="border border-light rounded-2 p-2 mb-2"><strong>{{ request.GET.email }}</strong></div>
+                We have sent you an activation email to make sure it's you. Please go to your email inbox and click on the received activation link to confirm your email and complete your registration.</p>
+                <a href="https://mail.google.com/" class="btn btn-sm btn-primary">Go to your email</a>
+              </div>
+              <div class="card-footer fs-sm text-muted"><strong>Note: </strong>Check your spam folder, if you didnt find it in your inbox!</div>
+            </div>
+          {% else %} {% endcomment %}
+            {% include 'partials/messages/alerts.html' %}
+            <form action="{% url 'sign_up' %}" method="POST" class="needs-validation" novalidate>
+              {% csrf_token %}
+              <div class="row g-3 mb-3">
+
+                <!-- First Name -->
+                <div class="col-lg-6 col-sm-12">
+                  <label class="form-label text-light" for="signup-firstname">{% trans "First name" %}<span class="text-danger ms-2">*</span></label>
+                  {{form.first_name}}
+                  <div class="invalid-feedback">{% trans "Please enter your first name!" %}</div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="col-lg-6 col-sm-12">
+                  <label class="form-label text-light" for="signup-lastname">{% trans "Last name" %}<span class="text-danger ms-2">*</span></label>
+                  {{form.last_name}}
+                  <div class="invalid-feedback">{% trans "Please enter your last name!" %}</div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+
+                <!-- Gender -->
+                <div class="col-md">
+                  <label class="form-label text-light" for="signup-gender">{% trans "Gender" %}<span class="text-danger ms-2">*</span></label>
+                  {{form.gender}}
+                  <div class="invalid-feedback">{% trans "Please enter your gender!" %}</div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="col-md">
+                  <label class="form-label text-light" for="signup-phone">{% trans "Phone number" %}<span class="text-danger ms-2">*</span></label>
+                  {{form.phone_number}}
+                  <div class="invalid-feedback">{% trans "Please enter your phone number!" %}</div>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label class="form-label text-light" for="signup-email">{% trans "Email address" %}<span class="text-danger ms-2">*</span></label>
+                {{form.email}}
+                <div class="invalid-feedback">{% trans "Please enter your email!" %}</div>
+              </div>
+
+              <div class="row g-3 mb-3">
+
+                <!-- Password -->
+                <div class="col-md">
+                  <label class="form-label text-light" for="signup-password">{% trans "Password" %}<span class="text-danger ms-2">*</span><span class="fs-sm text-muted ms-2">{% trans "min. 8 char" %}</span></label>
+                  <div class="password-toggle">
+                    {{form.password}}
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox" />
+                      <span class="password-toggle-indicator"></span>
+                    </label>
+                    <div class="invalid-feedback">{% trans "Please enter your password!" %}</div>
+                  </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="col-md mb-3">
+                  <label class="form-label text-light" for="signup-password-confirm">{% trans "Confirm password" %}<span class="text-danger ms-2">*</span></label>
+                  <div class="password-toggle">
+                    {{form.confirm_password}}
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox" />
+                      <span class="password-toggle-indicator"></span>
+                    </label>
+                    <div class="invalid-feedback">{% trans "Please confirm your password!" %}</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="agree-to-terms" required />
+                <label class="form-check-label text-light opacity-80" for="agree-to-terms">By joining, I agree to your <a href="#">Terms</a> and<a href="#"> Privacy policy</a>.</label>
+                <div class="invalid-feedback">{% trans "You must agree before submitting." %}</div>
+              </div>
+              <button class="btn btn-primary btn-lg w-100" type="submit">{% trans "Sign up" %}</button>
+            </form>
+          {% comment %} {% endif %} {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<!-- Page content-->
+<div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
+  <!-- Breadcrumb-->
+  <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb-light">
+      <li class="breadcrumb-item"><a href="car-finder-home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="car-finder-account-info.html">Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Notifications</li>
+    </ol>
+  </nav>
+  <!-- Page content-->
+  <div class="row">
+    <!-- Side Navbar-->
+    {% include 'partials/side-navbars/_profile-side-navbar.html' %}
+    <!-- Content-->
+    <div class="col-lg-8 col-md-7 mb-5">
+      <h1 class="h2 text-light mb-3">Notifications</h1>
+      <p class="text-light pt-1 border-bottom border-light pb-3 mb-4">Get real-time Tech updates, price drop alerts, helpful shopping information and more.</p>
+
+      <!-- Card based accordion -->
+      <div id="accordionCards" >
+
+        <!-- Card -->
+        <div class="card bg-secondary mb-2" data-bs-toggle="collapse" data-bs-target="#cardCollapse1">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="d-flex align-items-center">
+                <img class="me-2" src="{% static 'img/techload/Adobe Lightroom logo.png' %}" width="24" alt="IT Pro TV">
+                <span class="fs-sm text-dark opacity-80 ps-1">IT Pro TV</span>
+              </div>
+              <span class="badge bg-faded-danger rounded-pill fs-sm">New Offer</span>
+            </div>
+            <h3 class="h6 card-title pt-1 mb-0">New discount from IT Pro TV</h3>
+          </div>
+          <div class="collapse show" id="cardCollapse1" data-bs-parent="#accordionCards">
+            <div class="card-body mt-n1 pt-0">
+              <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
+              <div class="d-flex align-items-center justify-content-between"> 
+                <div class="fs-sm">
+                  <span class="text-nowrap me-3">
+                    <i class="fi-map-pin text-muted me-1"></i>
+                    Egypt
+                  </span>
+                  <span class="text-nowrap me-3">
+                    <i class="fi-cash fs-base text-muted me-1"></i>
+                    1,500 EGP
+                  </span>
+                </div>
+                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to Wishlist">
+                  <i class="fi-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#cardCollapse2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="d-flex align-items-center">
+                <img class="me-2" src="{% static 'img/techload/Adobe Lightroom logo.png' %}" width="24" alt="Xbox">
+                <span class="fs-sm text-dark opacity-80 ps-1">Xbox Company</span>
+              </div>
+              <span class="badge bg-faded-accent rounded-pill fs-sm">New Blog</span>
+            </div>
+            <h3 class="h6 card-title pt-1 mb-0">New article from Xbox Company</h3>
+          </div>
+          <div class="collapse" id="cardCollapse2" data-bs-parent="#accordionCards">
+            <div class="card-body mt-n1 pt-0">
+              <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
+              <div class="d-flex align-items-center justify-content-between"> 
+                <div class="fs-sm">
+                  <span class="text-nowrap me-3">
+                    <i class="fi-map-pin text-muted me-1"></i>
+                    Jordan
+                  </span>
+                  <span class="text-nowrap me-3">
+                    <i class="fi-cash fs-base text-muted me-1"></i>
+                    2,000 EGP
+                  </span>
+                </div>
+                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to Wishlist">
+                  <i class="fi-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#cardCollapse3">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="d-flex align-items-center">
+                <img class="me-2" src="{% static 'img/techload/Adobe Lightroom logo.png' %}" width="24" alt="XAMPP">
+                <span class="fs-sm text-dark opacity-80 ps-1">XAMPP Company</span>
+              </div>
+              <span class="badge bg-faded-danger rounded-pill fs-sm">New Tech</span>
+            </div>
+            <h3 class="h6 card-title pt-1 mb-0">New Mobile Application from XAMPP Company</h3>
+          </div>
+          <div class="collapse" id="cardCollapse3" data-bs-parent="#accordionCards">
+            <div class="card-body mt-n1 pt-0">
+              <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
+              <div class="d-flex align-items-center justify-content-between"> 
+                <div class="fs-sm">
+                  <span class="text-nowrap me-3">
+                    <i class="fi-map-pin text-muted me-1"></i>
+                    Kuwait
+                  </span>
+                  <span class="text-nowrap me-3">
+                    <i class="fi-cash fs-base text-muted me-1"></i>
+                    200 EGP
+                  </span>
+                </div>
+                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to Wishlist">
+                  <i class="fi-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

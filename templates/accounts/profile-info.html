@@ -1,0 +1,212 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<!-- Page content-->
+<div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
+  <!-- Breadcrumb-->
+  <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb-light">
+      <li class="breadcrumb-item"><a href="car-finder-home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="car-finder-account-info.html">Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Personal Info</li>
+    </ol>
+  </nav>
+
+
+  <div class="row">
+    <!-- Side Navbar-->
+    {% include 'partials/side-navbars/_profile-side-navbar.html' %}
+
+    <!-- Content-->
+    <div class="col-lg-8 col-md-7 mb-5">
+      <h1 class="h2 text-light">Personal Info</h1>
+      <div class="text-light mb-2 pt-1">Your personal info is 50% completed</div>
+      <div class="progress progress-light mb-4" style="height: .25rem;">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      
+      <!-- Alert Messages -->
+      {% include 'partials/messages/alerts.html' %}
+      <form action="{% url 'accounts/profile-info' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row pt-2">
+          <div class="col-lg-9 col-md-12 col-sm-8 mb-2 mb-m-4">
+            <div class="border border-light rounded-3 p-3 mb-4" id="personal-info">
+
+              <!-- First Name-->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">First name</label>
+                    <div class="text-light" id="first-name-value">{{ user.first_name }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#first-name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="first-name-collapse" data-bs-parent="#personal-info">
+                  {{ user_form.first_name }}
+                </div>
+              </div>
+
+              <!-- Last Name-->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">Last name</label>
+                    <div class="text-light" id="last-name-value">{{ user.last_name }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#last-name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="last-name-collapse" data-bs-parent="#personal-info">
+                  {{ user_form.last_name }}
+                </div>
+              </div>
+
+              <!-- Gender-->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">Gender</label>
+                    <div class="text-light" id="gender-value">{{ user.gender }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#gender-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="gender-collapse" data-bs-parent="#personal-info">
+                  {{ user_form.gender }}
+                </div>
+              </div>
+
+              <!-- Email-->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">Email</label>
+                    <div class="text-light" id="email-value">{{ user.email }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="email-collapse" data-bs-parent="#personal-info">
+                  {{ user_form.email }}
+                </div>
+              </div>
+
+              <!-- Phone number-->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">Phone number</label>
+                    <div class="text-light" id="phone-value">{{ user.phone_number }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#phone-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="phone-collapse" data-bs-parent="#personal-info">
+                  {{ user_form.phone_number }}
+                </div>
+              </div>
+
+              <!-- City -->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">City</label>
+                    <div class="text-light" id="city-value">{{ userprofile.city }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#city-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="city-collapse" data-bs-parent="#personal-info">
+                  {{ profile_form.city }}
+                </div>
+              </div>
+
+              <!-- Country -->
+              <div class="border-bottom border-light pb-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">Country</label>
+                    <div class="text-light" id="country-value">{{ userprofile.country }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#country-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="country-collapse" data-bs-parent="#personal-info">
+                  {{ profile_form.country }}
+                </div>
+              </div>
+
+              <!-- Address-->
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="pe-2 opacity-70">
+                    <label class="form-label fw-bold text-light">Address</label>
+                    <div class="text-light" id="address-value">{{ userprofile.address }}</div>
+                  </div>
+                  <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light py-0" href="#address-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                </div>
+                <div class="collapse" id="address-collapse" data-bs-parent="#personal-info">
+                  {{ profile_form.address }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Pic Column -->
+          <div class="col-lg-3 col-md-12 col-sm-4 mb-4">
+            <!-- Address-->
+            <div>
+              <div class="mb-2">
+                <img class="rounded-3" src="{{ userprofile.profile_picture.url }}" alt="Profile picture">
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="pe-2 opacity-70 pt-2">
+                  <label class="form-label fw-bold text-light"><i class="fi-camera-plus me-2 mb-1"></i>Profile picture</label>
+                  {% comment %} <div class="text-light" id="address-value">{{ userprofile.address }}</div> {% endcomment %}
+                </div>
+                <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-light pt-0" href="#profile-picture-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+              </div>
+              <div class="collapse" id="profile-picture-collapse" data-bs-parent="#personal-info">
+                {{ profile_form.profile_picture }}
+              </div>
+              <!-- Who can see my profile -->
+              <p class="fs-sm text-light opacity-70 mt-2">All your profile data is private. No one else will see it except you the owner of the profile.</p>
+            </div>
+            
+
+            <!-- Profile Picture -->
+            
+
+            <!-- Light Profile Picture Skin -->
+            {% comment %} <input 
+            class="file-uploader border-light bg-faded-light" 
+            type="file" 
+            accept="image/png, image/jpeg" 
+            data-label-idle='<i class="d-inline-block fi-camera-plus fs-2 text-light mb-2"></i><br><span class="fw-bold text-light opacity-70">Change picture</span>' 
+            data-style-panel-layout="compact" 
+            data-image-preview-height="160" 
+            data-image-crop-aspect-ratio="1:1" 
+            data-image-resize-target-width="200" 
+            data-image-resize-target-height="200"> {% endcomment %}
+
+            {% comment %} <input class="file-uploader border-light bg-faded-light" type="file" accept="image/png, image/jpeg" data-label-idle="&lt;i class=&quot;d-inline-block fi-camera-plus fs-2 text-light text-muted mb-2&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;span class=&quot;fw-bold text-light opacity-70&quot;&gt;Change picture&lt;/span&gt;" data-style-panel-layout="compact" data-image-preview-height="160" data-image-crop-aspect-ratio="1:1" data-image-resize-target-width="200" data-image-resize-target-height="200"> {% endcomment %}
+
+            <!-- Who can see my profile -->
+
+          </div>
+        </div>
+
+        <!-- Action buttons-->
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="d-flex align-items-center justify-content-between pb-1">
+              <button class="btn btn-primary" type="submit">Save changes</button>
+              <button class="btn btn-link btn-light btn-sm px-0" type="button"><i class="fi-trash me-2"></i>Delete account</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
