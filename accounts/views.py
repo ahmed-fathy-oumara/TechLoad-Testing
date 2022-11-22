@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import RegistrationForm
 from .models import Account
 
@@ -27,6 +28,10 @@ def register(request):
             
             # Save the new user data to the account model
             user.save()
+            
+            # Successful Registration Message
+            messages.success(request, "Registration successfully.")
+            return redirect('sign_up')
 
     # If form has no data to POST, return the registration form
     else:
