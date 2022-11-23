@@ -61,7 +61,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You have signed in successfully.')
-            return redirect('home')
+            return redirect('profile_dashboard')
         
         # If User Doesn't Exists
         else:
@@ -85,9 +85,9 @@ def logout(request):
 
 
 
-# Profile Info View
 # Login decorator to make sure that user is logged in 
 # if not logged in go back to login page
 @login_required(login_url='sign_in')
+# Profile Info View
 def profileDashboard(request):
     return render(request, 'accounts/profile-dashboard.html')
