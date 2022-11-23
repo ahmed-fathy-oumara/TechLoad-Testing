@@ -26,13 +26,13 @@
 
       <!-- Change Password -->
       <h2 class="h5 text-light mb-4">Change Password</h2>
-      <form class="needs-validation pb-4" action="{% url 'accounts/profile-security' %}" method="POST" novalidate>
+      <form class="needs-validation pb-4" action="{% url 'profile_security' %}" method="POST" novalidate>
         {% csrf_token %}
 
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between mb-2">
             <label class="form-label text-light mb-0" for="account-password">{% trans "Current Password" %}</label>
-            <a class="text-light fs-sm" href="{% url 'accounts/forgot-password' %}">{% trans "Forgot password?" %}</a>
+            <a class="text-light fs-sm" href="{% url 'forgot_password' %}">{% trans "Forgot password?" %}</a>
           </div>
           <div class="password-toggle">
             <input class="form-control form-control-light" id="account-password" type="password" name="current_password" placeholder="Enter your current password" required/>

@@ -24,126 +24,26 @@
     </a>
     <div class="collapse d-md-block mt-3" id="account-nav">
       <div class="card-nav">
-        <!-- Profile Dashboard -->
+
+        <!-- Profile Info -->
         <a
-        {% if 'user-dashboard' in request.path %} 
+        {% if 'user-info' in request.path %} 
           class="card-nav-link active"
         {% else %}
           class="card-nav-link"
         {% endif %}
-        href="{% url 'accounts/profile-dashboard' %}">
-          <i class="fi-dashboard me-2"></i>Dashboard
+        href="{% url 'profile_info' %}">
+          <i class="fi-user me-2"></i>Profile
         </a>
-        <!-- Profile Notifications -->
-        <a
-        {% if 'user-notifications' in request.path %} 
-        class="card-nav-link active"
-        {% else %}
-        class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-notifications' %}">
-          <div class="d-flex justify-content-between">
-            <div>
-              <i class="fi-bell me-2"></i>Notifications
-            </div>
-            <div>
-              <span class="badge bg-faded-light ms-2">4</span>
-            </div>
-          </div>
-        </a>
-        <!-- Profile Requests -->
-        <a
-        {% if 'user-requests' in request.path %} 
-        class="card-nav-link active"
-        {% else %}
-        class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-requests' %}">
-          <div class="d-flex justify-content-between">
-            <div>
-              <i class="fi-computer me-2"></i>Requests
-            </div>
-            <div>
-              <span class="badge bg-faded-light ms-2">{{ requests_count }}</span>
-            </div>
-          </div>
-        </a>
-        <!-- Profile Likes -->
-        <a
-        {% if 'user-likes' in request.path %} 
-        class="card-nav-link active"
-        {% else %}
-        class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-likes' %}">
-          <div class="d-flex justify-content-between">
-            <div>
-              <i class="fi-heart me-2"></i>Likes
-            </div>
-            <div>
-              <span class="badge bg-faded-light ms-2">4</span>
-            </div>
-          </div>
-        </a>
-        <!-- Profile Saves -->
-        <a
-        {% if 'user-saves' in request.path %} 
-        class="card-nav-link active"
-        {% else %}
-        class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-saves' %}">
-          <div class="d-flex justify-content-between">
-            <div>
-              <i class="fi-bookmark me-2"></i>Saves
-            </div>
-            <div>
-              <span class="badge bg-faded-light ms-2">4</span>
-            </div>
-          </div>
-        </a>
-        <!-- Offers -->
-        <a
-        {% if 'user-offers' in request.path %} 
-        class="card-nav-link active"
-        {% else %}
-        class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-offers' %}">
-          <div class="d-flex justify-content-between">
-            <div>
-              <i class="fi-gift me-2"></i>Offers
-            </div>
-            <div>
-              <span class="badge bg-faded-light ms-2">4</span>
-            </div>
-          </div>
-        </a>
-        <!-- Extended Offers -->
-        <a
-        {% if 'user-extended-offers' in request.path %} 
-        class="card-nav-link active"
-        {% else %}
-        class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-extended-offers' %}">
-          <div class="d-flex justify-content-between">
-            <div>
-              <i class="fi-switch-horizontal me-2"></i>Extended Offers
-            </div>
-            <div>
-              <span class="badge bg-faded-light ms-2">4</span>
-            </div>
-          </div>
-        </a>
-        <!-- Profile Download -->
+
+        <!-- Profile Downloads -->
         <a
         {% if 'user-downloads' in request.path %} 
         class="card-nav-link active"
         {% else %}
         class="card-nav-link"
         {% endif %}
-        href="{% url 'accounts/profile-downloads' %}">
+        href="{% url 'profile_downloads' %}">
           <div class="d-flex justify-content-between">
             <div>
               <i class="fi-cloud-download me-2"></i>Downloads
@@ -153,14 +53,145 @@
             </div>
           </div>
         </a>
-        <!-- Profile Reviews -->
+
+        <!-- Profile Security -->
         <a
+        {% if 'user-security' in request.path %} 
+          class="card-nav-link active"
+        {% else %}
+          class="card-nav-link"
+        {% endif %}
+          href="{% url 'profile_security' %}">
+          <i class="fi-lock me-2"></i>Security
+        </a>
+
+        <!-- Profile Dashboard -->
+        {% comment %} <a
+        {% if 'user-dashboard' in request.path %} 
+          class="card-nav-link active"
+        {% else %}
+          class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_dashboard' %}">
+          <i class="fi-dashboard me-2"></i>Dashboard
+        </a> {% endcomment %}
+
+        <!-- Profile Notifications -->
+        {% comment %} <a
+        {% if 'user-notifications' in request.path %} 
+        class="card-nav-link active"
+        {% else %}
+        class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_notifications' %}">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fi-bell me-2"></i>Notifications
+            </div>
+            <div>
+              <span class="badge bg-faded-light ms-2">4</span>
+            </div>
+          </div>
+        </a> {% endcomment %}
+
+        <!-- Profile Requests -->
+        {% comment %} <a
+        {% if 'user-requests' in request.path %} 
+        class="card-nav-link active"
+        {% else %}
+        class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_requests' %}">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fi-computer me-2"></i>Requests
+            </div>
+            <div>
+              <span class="badge bg-faded-light ms-2">{{ requests_count }}</span>
+            </div>
+          </div>
+        </a> {% endcomment %}
+
+        <!-- Profile Likes -->
+        {% comment %} <a
+        {% if 'user-likes' in request.path %} 
+        class="card-nav-link active"
+        {% else %}
+        class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_likes' %}">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fi-heart me-2"></i>Likes
+            </div>
+            <div>
+              <span class="badge bg-faded-light ms-2">4</span>
+            </div>
+          </div>
+        </a> {% endcomment %}
+
+        <!-- Profile Saves -->
+        {% comment %} <a
+        {% if 'user-saves' in request.path %} 
+        class="card-nav-link active"
+        {% else %}
+        class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_saves' %}">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fi-bookmark me-2"></i>Saves
+            </div>
+            <div>
+              <span class="badge bg-faded-light ms-2">4</span>
+            </div>
+          </div>
+        </a> {% endcomment %}
+
+        <!-- Offers -->
+        {% comment %} <a
+        {% if 'user-offers' in request.path %} 
+        class="card-nav-link active"
+        {% else %}
+        class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_offers' %}">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fi-gift me-2"></i>Offers
+            </div>
+            <div>
+              <span class="badge bg-faded-light ms-2">4</span>
+            </div>
+          </div>
+        </a> {% endcomment %}
+
+        <!-- Extended Offers -->
+        {% comment %} <a
+        {% if 'user-extended-offers' in request.path %} 
+        class="card-nav-link active"
+        {% else %}
+        class="card-nav-link"
+        {% endif %}
+        href="{% url 'profile_extended-offers' %}">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fi-switch-horizontal me-2"></i>Extended Offers
+            </div>
+            <div>
+              <span class="badge bg-faded-light ms-2">4</span>
+            </div>
+          </div>
+        </a> {% endcomment %}
+        
+        <!-- Profile Reviews -->
+        {% comment %} <a
         {% if 'user-reviews' in request.path %} 
         class="card-nav-link active"
         {% else %}
         class="card-nav-link"
         {% endif %}
-        href="{% url 'accounts/profile-reviews' %}">
+        href="{% url 'profile_reviews' %}">
           <div class="d-flex justify-content-between">
             <div>
               <i class="fi-star me-2"></i>Reviews
@@ -169,40 +200,21 @@
               <span class="badge bg-faded-light ms-2">4</span>
             </div>
           </div>
-        </a>
-        <!-- Profile Info -->
-        <a
-        {% if 'user-info' in request.path %} 
-          class="card-nav-link active"
-        {% else %}
-          class="card-nav-link"
-        {% endif %}
-        href="{% url 'accounts/profile-info' %}">
-          <i class="fi-user me-2"></i>Profile
-        </a>
-        <!-- Profile Security -->
-        <a
-        {% if 'user-security' in request.path %} 
-          class="card-nav-link active"
-        {% else %}
-          class="card-nav-link"
-        {% endif %}
-          href="{% url 'accounts/profile-security' %}">
-          <i class="fi-lock me-2"></i>Security
-        </a>
+        </a> {% endcomment %}
+        
         <!-- Profile Settings -->
-        <a
+        {% comment %} <a
         {% if 'user-settings' in request.path %} 
           class="card-nav-link active"
         {% else %}
           class="card-nav-link"
         {% endif %}
-          href="{% url 'accounts/profile-settings' %}">
+          href="{% url 'profile_settings' %}">
           <i class="fi-settings me-2"></i>Settings
-        </a>
+        </a>{% endcomment %}
 
-        <a class="card-nav-link" href="{% url 'accounts/profile-help-center' %}"><i class="fi-help me-2"></i>Help</a>
-        <a class="card-nav-link" href="{% url 'logout' %}"><i class="fi-logout me-2"></i>Sign Out</a>
+        <a class="card-nav-link" href="{% url 'profile_help_center' %}"><i class="fi-help me-2"></i>Help</a>
+        <a class="card-nav-link" href="{% url 'sign_out' %}"><i class="fi-logout me-2"></i>Sign Out</a>
       </div>
     </div>
   </div>

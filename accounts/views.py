@@ -61,7 +61,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You have signed in successfully.')
-            return redirect('profile_dashboard')
+            return redirect('profile_info')
         
         # If User Doesn't Exists
         else:
@@ -89,5 +89,64 @@ def logout(request):
 # if not logged in go back to login page
 @login_required(login_url='sign_in')
 # Profile Info View
-def profileDashboard(request):
-    return render(request, 'accounts/profile-dashboard.html')
+def profileInfo(request):
+    return render(request, 'accounts/profile-info.html')
+
+
+
+# Profile Downloads View
+@login_required(login_url='sign_in')
+def profileDownloads(request):
+    return render(request, 'accounts/profile-downloads.html')
+
+
+
+# Profile Security View
+@login_required(login_url='sign_in')
+def profileSecurity(request):
+    return render(request, 'accounts/profile-security.html')
+
+
+
+# Profile Help Center View
+@login_required(login_url='sign_in')
+def profileHelpCenter(request):
+    return render(request, 'accounts/profile-help-center.html')
+
+
+
+
+# Profile Dashboard View
+# @login_required(login_url='sign_in')
+# def profileDashboard(request):
+#     return render(request, 'accounts/profile-dashboard.html')
+
+
+# Profile Notifications View
+# @login_required(login_url='sign_in')
+# def profileNotifications(request):
+#     return render(request, 'accounts/profile-notifications.html')
+
+
+# Profile Offers View
+# @login_required(login_url='sign_in')
+# def profileOffers(request):
+#     return render(request, 'accounts/profile-offers.html')
+
+
+# Profile Extended Offers View
+# @login_required(login_url='sign_in')
+# def profileExtendedOffers(request):
+#     return render(request, 'accounts/profile-extended-offers.html')
+
+
+# Profile Reviews View
+# @login_required(login_url='sign_in')
+# def profileReviews(request):
+#     return render(request, 'accounts/profile-reviews.html')
+
+
+# Profile Settings View
+# @login_required(login_url='sign_in')
+# def profileSettings(request):
+#     return render(request, 'accounts/profile-settings.html')
