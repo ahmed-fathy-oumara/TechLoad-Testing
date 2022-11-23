@@ -162,3 +162,11 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
+
+
+# SMTP configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'dev.ahmed.85@gmail.com'
+EMAIL_HOST_PASSWORD = 'qobnyxqydoolduge'
+EMAIL_USE_TLS = True

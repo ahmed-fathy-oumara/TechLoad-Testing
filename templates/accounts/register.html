@@ -46,18 +46,20 @@
 
 
           <!-- Header and footer -->
-          {% comment %} {% if request.GET.command == 'verification' %}
+          {% if request.GET.command == 'verification' %}
             <div class="card card-light text-center">
               <div class="card-body">
-                <h4 class="card-title">Welcome on board!</h4>
-                <p class="card-text mb-2">Thanks for your registration to TechLoad with your email: 
+                <h4 class="card-title">Welcome on board...</h4>
+                <p class="card-text mb-2">To activate your account, please click on the activation button in the email we have sent now to: 
                 <div class="border border-light rounded-2 p-2 mb-2"><strong>{{ request.GET.email }}</strong></div>
-                We have sent you an activation email to make sure it's you. Please go to your email inbox and click on the received activation link to confirm your email and complete your registration.</p>
-                <a href="https://mail.google.com/" class="btn btn-sm btn-primary">Go to your email</a>
+                This helps you to keep your account secured and start being techie.</p>
+                
+                <p class="card-text mb-2">Wrong address?! If you mistyped your email or cannot access it, you can <a href="{% url 'sign_out' %}"> Sign Out </a>now to correct your typo OR register with a different email.</p>
+
               </div>
               <div class="card-footer fs-sm text-muted"><strong>Note: </strong>Check your spam folder, if you didnt find it in your inbox!</div>
             </div>
-          {% else %} {% endcomment %}
+          {% else %}
             {% include 'partials/messages/alerts.html' %}
             <form action="{% url 'sign_up' %}" method="POST" class="needs-validation" novalidate>
               {% csrf_token %}
@@ -141,7 +143,7 @@
               {{ form.email.errors }}
               {{ form.non_field_errors }}
             </form>
-          {% comment %} {% endif %} {% endcomment %}
+          {% endif %}
         </div>
       </div>
     </div>
