@@ -15,7 +15,7 @@ from django.core.mail import EmailMessage
 
 # Create your views here.
 
-
+# User Registration View
 def register(request):
     # Making sure form method is POST
     if request.method == 'POST':
@@ -23,7 +23,7 @@ def register(request):
         # Requesting all the form posted data
         form = RegistrationForm(request.POST)
         
-        # Making sure form data is valid
+        # If you check all the below fields and form data is valid
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -67,9 +67,8 @@ def register(request):
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            # messages.success(request, F'Thanks for your registration <strong>{first_name}</strong>, </br> We have sent you an activation email,please go to your email inbox <strong>{to_email}</strong> and click on \
-            # received activation link to confirm and complete your registration. </br> <strong>Note:</strong> Check your spam folder.')
-
+            # Redirect the user to the register page and display the activation success email there
+            # Pass the command verification email and the user email to the url and to the register page
             return redirect('/accounts/register/?command=verification&email='+email)
 
     # If form has no data to POST, return the registration form
@@ -83,26 +82,44 @@ def register(request):
 
 
 
+# User Activation View
+# Pass the uidb and the token through the url to the view
 def activate(request, uidb64, token):
+    
+    # Try Block: Try the below first
     try:
+        # Decode or decrypt the id we encoded or encrypted in 
+        # the above registration view and store it in uid variable
         uid = urlsafe_base64_decode(uidb64).decode()
+        # Return the user object and store it in user
         user = Account._default_manager.get(pk=uid)
+    
+    # Except Block: Handling the errors we can meet during activation
+    # If any of these errors happen set user to none and donot activate the account
     except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
         user = None
 
+    # If user exists and the token is checked of this particular user
     if user is not None and default_token_generator.check_token(user, token):
+        # Change user is_active status in database to true 
         user.is_active = True
+        # Save user with the new active status
         user.save()
 
+        # Send success message to the user that he activated the account
         messages.success(request, 'Congratulations! Your account has been activated')
+        # Redirect user to the sign in page to login
         return redirect('sign_in')
 
+    # Rather than that
     else:
+        # Send error message
         messages.error(request, 'Invalid activation link')
+        # Redirect user to the sign up page to register again
         return redirect('sign_up')
 
 
-
+# User Login View
 def login(request):
     # Making sure form method is POST
     if request.method == 'POST':
@@ -127,6 +144,126 @@ def login(request):
             return redirect('sign_in')
         
     return render(request, 'accounts/login.html')
+
+
+
+# User Forgot Password View
+def forgotPassword(request):
+
+    # If form method is POST
+    if request.method == 'POST':
+        # Get the inserted email and store it to the email
+        email = request.POST['email']
+
+        # Check if email exists in database
+        if Account.objects.filter(email=email).exists():
+            user = Account.objects.get(email__iexact=email)
+
+            # Sending Reset Password Email
+            # Get the current site domain
+            current_site = get_current_site(request)
+            # Your activation email subject is
+            mail_subject = 'TechLoad Password Reset'
+            # Render your email message to string here or
+            # add the html file contains your message if exists
+            message = render_to_string('accounts/reset-password-email.html', {
+                # Return the user object
+                'user': user,
+                # Return the current site
+                'domain': current_site,
+                # Encode or Encrypt User id or pk
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                # Creating new token for this particular user using the default token generator.
+                'token': default_token_generator.make_token(user),
+            })
+            
+            # After collecting these data and
+            # creating token start sending the email
+            to_email = email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+
+            # Display Reset Password Email Sent Success Message
+            messages.success(request, 'Reset password email has been sent to your email.')
+            # Redirect user to the sign in page to login with new password
+            return redirect('sign_in')
+
+        else:
+            messages.error(request, 'This Account does not exist')
+            return redirect('forgot_password')
+
+    else:
+        return render(request, 'accounts/forgot-password.html')
+
+    
+
+# Reset Password Validation Email View
+# Pass the uidb and the token through the url to the view
+def resetpassword_validate(request, uidb64, token):
+    
+    # Try Block: Try the below first
+    try:
+        # Decode or decrypt the id we encoded or encrypted in
+        # the above forgot password view and store it in uid variable
+        uid = urlsafe_base64_decode(uidb64).decode()
+        # Return the user object and store it in user
+        user = Account._default_manager.get(pk=uid)
+
+    # Except Block: Handling the errors we can meet during resetting password
+    # If any of these errors happen set user to none and donot reset the password
+    except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    # If user exists and the token is checked of this particular user
+    if user is not None and default_token_generator.check_token(user, token):
+        # Save the uid inside the session to access this 
+        # session later while reseting the password
+        request.session['uid'] = uid
+
+        # Display Reset Password Success Message
+        messages.success(request, 'Please reset your password')
+        return redirect('reset_password')
+
+    # Display this message If user does not exist or 
+    # used the link in the email after 1 hour or used old link
+    else:
+        messages.error(request, 'This link has been expired')
+        return redirect('sign_in')
+
+
+
+# Reset Password View
+def resetPassword(request):
+    
+    # If form method is POST
+    if request.method == 'POST':
+        # Get the inserted input named password and store it to password
+        password = request.POST['password']
+        # Get the inserted input named confirm password and store it to confirm password
+        confirm_password = request.POST['confirm_password']
+
+        # If two password matches each other
+        if password == confirm_password:
+            # Get the uid from the session we saved above
+            uid = request.session.get('uid')
+            # Get the user account by id
+            user = Account.objects.get(pk=uid)
+            # Set the new password
+            user.set_password(password)
+            # Save user with new password in database
+            user.save()
+
+            # Display Reset Password Success Message
+            messages.success(request, 'Your password has been reset successfully!')
+            # Redirect user to sign in page to login with new password
+            return redirect('sign_in')
+
+        # Display Error Message If passwords donot match each other
+        else:
+            messages.error(request, 'Passwords do not match!')
+
+    else:
+        return render(request, 'accounts/reset-password.html')
 
 
 

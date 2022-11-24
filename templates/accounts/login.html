@@ -54,7 +54,7 @@
             <div class="mb-4">
               <div class="d-flex align-items-center justify-content-between mb-2">
                 <label class="form-label text-light mb-0" for="signin-password">{% trans "Password" %}</label>
-                <a class="fs-sm" href="#">{% trans "Forgot password?" %}</a>
+                <a class="fs-sm" href="{% url 'forgot_password' %}">{% trans "Forgot password?" %}</a>
               </div>
               <div class="password-toggle">
                 <input class="form-control form-control-light" id="signin-password" type="password" name="password" placeholder="Enter password" required/>
